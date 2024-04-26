@@ -10,7 +10,14 @@ private:
     int size = 0;
     std::vector<int> result;
     
+    void show_vector(const std::vector<int> &a) {
+        for(int i = 0; i < a.size(); i++){
+                std::cout << a[i];
+        }
+    }
+    
     std::vector<int> addBinary(const std::vector<int>& a, const std::vector<int>& b) {
+        
         int carry = 0;
 
         for (int i = a.size() - 1; i >= 0; --i) {
@@ -23,15 +30,15 @@ private:
         if (carry > 0) {
             result.insert(result.begin(), carry);
         }*/
-        
-        if ((a[0] == b[0]) && (result[0] != a[0])) {
-            std::cout << "Overflow detected in addition!" << std::endl;
-        } else if (result.size() > 8 && (a[0] == b[0] && result[1]!=a[0])){
-            std::cout << "Overflow again in addition!" << std::endl;
-        } else if (result.size() > 8) {
-            result.erase(result.begin());
+        if (!a.empty() && !b.empty() && !result.empty()) {
+            if ((a[0] == b[0]) && (result[0] != a[0])) {
+                std::cout << "Overflow detected in addition!" << std::endl;
+            } else if (result.size() > 8 && (a[0] == b[0] && result[1]!=a[0])){
+                std::cout << "Overflow again in addition!" << std::endl;
+            } else if (result.size() > 8) {
+                result.erase(result.begin());
+            }
         }
-
         return result;
     }
 
@@ -40,18 +47,24 @@ private:
         for (int i = 0; i < 8; i++) {
             complementB.push_back((subtrahend[i] == 0) ? 1 : 0);
         }
+        
+        /*std::cout << "compB: ";
+        for (int i = 0; i < complementB.size(); i++) {
+            std::cout << complementB[i];
+        }*/
+        
         std::vector<int> one = {0, 0, 0, 0, 0, 0, 0, 1};
         complementB = addBinary(complementB, one);
             
-        std::cout << "compB: ";
+        /*std::cout << "compB: ";
         for (int i = 0; i < complementB.size(); i++) {
             std::cout << complementB[i];
         }
-        std::cout << std::endl;
+        std::cout << std::endl;*/
             
-        result = addBinary(minuend, complementB);
+        return result = addBinary(minuend, complementB);
         
-        return result;
+        /*return result;*/
     }
 
     std::vector<int> multiplyBinary(std::vector<int> num1, std::vector<int> num2) {
@@ -69,13 +82,13 @@ private:
             }
         }
         
-        if ((num1[0] == num2[0]) && (result[0] = 1)) {
+        if (!num1.empty() && !num2.empty() && !result.empty()) {
+            if ((num1[0] == num2[0]) && (result[0] = 1)) {
                 std::cout << "Overflow mult!" << std::endl;
             } else if ((num1[0] != num2[0]) && (result[0] = 0)) {
                 std::cout << "Overflow mult2!" << std::endl;
             }
-
-
+        }
         return result;
     }
 
@@ -139,7 +152,10 @@ public:
 
     void displayResults() {
         int decimalNumber = 0;
-        int signBit = result[0]; // Знаковый бит (0 для положительных, 1 для отрицательных)
+        int signBit = 0;
+        if (!result.empty()) {
+            int signBit = result[0];
+        }// Знаковый бит (0 для положительных, 1 для отрицательных)
         int power = 1; // Начальная степень двойки
 
         for (int i = result.size() - 1; i >= 1; --i) {
@@ -155,11 +171,7 @@ public:
         std::cout << decimalNumber << std::endl;
     }
     
-    void show_vector(const std::vector<int> &a) {
-        for(int i = 0; i < a.size(); i++){
-                std::cout << a[i];
-        }
-    }
+    
 };
 
 
@@ -185,3 +197,4 @@ int main() {
     
     return 0;
 }
+
