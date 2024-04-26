@@ -79,11 +79,11 @@ private:
                     temp.push_back(0);
                     temp.erase(temp.begin());
                 }
-                show_vector(temp);
-                std::cout << std::endl;
+                /*show_vector(temp);
+                std::cout << std::endl;*/
                 result1 = addBinary(result1, temp);
-                show_vector(result1);
-                std::cout << std::endl;
+                /*show_vector(result1);
+                std::cout << std::endl;*/
             }
         }
         /*
@@ -130,8 +130,10 @@ public:
             num2 /= 2; // Делаем целочисленное деление на 2
         }
         
+        std::cout<<"Binary representation of first number: ";
         show_vector(number1);
         std::cout << std::endl;
+        std::cout<<"Binary representation of second number: ";
         show_vector(number2);
 
     }
@@ -175,7 +177,7 @@ public:
         }
         show_vector(result);
         std::cout << std::endl;
-        std::cout << decimalNumber << std::endl;
+        std::cout << "Decimal result: " << decimalNumber << std::endl;
     }
     
     
